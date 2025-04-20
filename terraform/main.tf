@@ -1,0 +1,3 @@
+module "products" {
+    source = "./products"
+}

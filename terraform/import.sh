@@ -1,0 +1,3 @@
+terraform import module.products.aws_lambda_function.get_categories vka-product-categories
+terraform import module.products.aws_lambda_function.search_products vka-product-search
+terraform import module.products.aws_lambda_function.product_details vka-product-details
