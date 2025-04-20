@@ -17,7 +17,7 @@ phases:
       - mkdir -p /codebuild/terraform
       - rm -rf /codebuild/terraform/*
       - cp -r ./* /codebuild/terraform/
-      - cd /codebuild/terraform/
+      - cd /codebuild/terraform/terraform
       - ls
       - terraform init
       - terraform apply -auto-approve
