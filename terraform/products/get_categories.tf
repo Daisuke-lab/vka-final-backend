@@ -12,6 +12,6 @@ resource "aws_lambda_function" "get_categories" {
   handler          = "${var.categories_filename}.lambda_handler"
   runtime          = "python3.10"
   filename         = data.archive_file.init_get_categories.output_path
-  source_code_hash = "${base64sha256(file("${data.archive_file.init_get_categories.source_file}"))}"
+  source_code_hash = base64sha256(file(data.archive_file.init_get_categories.output_path))
   role             = var.lambda_iam_role
 }
