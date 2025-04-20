@@ -5,7 +5,6 @@ data "archive_file" "init_get_categories" {
   type        = "zip"
   source_file = "${dirname(path.cwd)}/products/${var.categories_filename}.py"
   output_path = "${dirname(path.cwd)}/outputs/${var.categories_filename}.zip"
-  output_file_mode = 0666
 }
 
 resource "aws_lambda_function" "get_categories" {
@@ -13,6 +12,6 @@ resource "aws_lambda_function" "get_categories" {
   handler          = "${var.categories_filename}.lambda_handler"
   runtime          = "python3.10"
   filename         = data.archive_file.init_get_categories.output_path
-  source_code_hash = data.archive_file.init_get_categories.output_base64sha256
+  source_code_hash = "${base64sha256(file("${data.archive_file.init_get_categories.source_file}"))}"
   role             = var.lambda_iam_role
 }
