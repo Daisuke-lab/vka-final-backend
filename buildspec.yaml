@@ -18,5 +18,6 @@ phases:
       - rm -rf /codebuild/terraform/*
       - cp -r ./* /codebuild/terraform/
       - cd /codebuild/terraform/
+      - ls
       - terraform init
       - terraform apply -auto-approve
