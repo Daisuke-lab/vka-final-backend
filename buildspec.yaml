@@ -13,6 +13,7 @@ phases:
 
   build:
     commands:
+      - export TF_LOG=TRACE
       - cd terraform
       - terraform init
       - terraform apply -auto-approve

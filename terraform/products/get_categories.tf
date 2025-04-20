@@ -11,7 +11,7 @@ resource "null_resource" "hash_categories_file" {
   }
 }
 data "local_file" "hash_categories_file" {
-  filename = "${dirname(path.cwd)}/products/hash_${var.categories_filename}.txt"
+  filename = "hash_${var.categories_filename}.txt"
   depends_on = [null_resource.hash_categories_file]
 }
 
