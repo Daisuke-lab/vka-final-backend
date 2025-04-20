@@ -20,7 +20,6 @@ data "archive_file" "init_get_categories" {
 }
 
 resource "aws_lambda_function" "get_categories" {
-  depends_on = [local_file.hash_categories_file]
   function_name    = "vka-product-categories"
   handler          = "${var.categories_filename}.lambda_handler"
   runtime          = "python3.10"
