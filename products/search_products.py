@@ -6,7 +6,7 @@ import simplejson as json
 dynamodb = boto3.resource('dynamodb')
 TABLE_NAME = "ProductTable"
 table = dynamodb.Table(TABLE_NAME)
-def lambda_handler(event, context):
+def handler(event, context):
     print("HELLO WORLD!!!!")
     try:
         params = event.get("params", {}).get("querystring", {})
