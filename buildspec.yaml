@@ -13,7 +13,6 @@ phases:
 
   build:
     commands:
-      - export TF_LOG=TRACE
       - mkdir -p /codebuild/terraform
       - rm -rf /codebuild/terraform/*
       - cp -r ./* /codebuild/terraform/
