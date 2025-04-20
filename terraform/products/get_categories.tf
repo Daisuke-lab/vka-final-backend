@@ -6,6 +6,9 @@ resource "null_resource" "hash_categories_file" {
   provisioner "local-exec" {
     command = "sha256sum ${dirname(path.cwd)}/products/${var.categories_filename}.py | awk '{print $1}' > hash_${var.categories_filename}.txt"
   }
+  triggers = {
+    always_run = timestamp()
+  }
 }
 data "local_file" "hash_categories_file" {
   filename = "${dirname(path.cwd)}/products/hash_${var.categories_filename}.txt"
