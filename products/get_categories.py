@@ -7,7 +7,7 @@ dynamodb = boto3.resource('dynamodb')
 TABLE_NAME = "ProductTable"
 table = dynamodb.Table(TABLE_NAME)
 def lambda_handler(event, context):
-    print("HELLO WORLD")
+    print("HELLO WORLD!!!")
     try:
         scan_kwargs = {
             "ProjectionExpression": "category",
