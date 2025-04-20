@@ -5,6 +5,7 @@ data "archive_file" "init_get_categories" {
   type        = "zip"
   source_file = "${dirname(path.cwd)}/products/${var.categories_filename}.py"
   output_path = "${dirname(path.cwd)}/outputs/${var.categories_filename}.zip"
+  output_file_mode = 0666
 }
 
 resource "aws_lambda_function" "get_categories" {
