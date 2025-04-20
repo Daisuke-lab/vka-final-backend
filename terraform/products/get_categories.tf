@@ -8,7 +8,7 @@ resource "null_resource" "hash_categories_file" {
   }
 }
 data "local_file" "hash_categories_file" {
-  filename = "hash_${var.categories_filename}.txt"
+  filename = "${dirname(path.cwd)}/products/hash_${var.categories_filename}.txt"
   depends_on = [null_resource.hash_categories_file]
 }
 
@@ -20,6 +20,7 @@ data "archive_file" "init_get_categories" {
 }
 
 resource "aws_lambda_function" "get_categories" {
+  depends_on = [local_file.hash_categories_file]
   function_name    = "vka-product-categories"
   handler          = "${var.categories_filename}.lambda_handler"
   runtime          = "python3.10"
