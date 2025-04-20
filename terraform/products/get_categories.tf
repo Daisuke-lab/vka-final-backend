@@ -9,10 +9,6 @@ data "archive_file" "init_get_categories" {
 
 }
 
-data "aws_lambda_function" "latest_categories" {
-  function_name = "vka-product-categories"
-}
-
 resource "aws_lambda_function" "get_categories" {
   function_name    = "vka-product-categories"
   handler          = "${var.categories_filename}.lambda_handler"
@@ -20,5 +16,4 @@ resource "aws_lambda_function" "get_categories" {
   filename         = data.archive_file.init_get_categories.output_path
   source_code_hash = data.archive_file.init_get_categories.output_base64sha256
   role             = var.lambda_iam_role
-  count = data.archive_file.init_get_categories.output_base64sha256 == data.aws_lambda_function.latest_categories.source_code_hash ? 0 : 1
 }

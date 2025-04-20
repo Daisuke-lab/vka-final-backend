@@ -14,6 +14,9 @@ phases:
   build:
     commands:
       - export TF_LOG=TRACE
-      - cd terraform
+      - mkdir -p /codebuild/terraform
+      - rm -rf /codebuild/terraform/*
+      - cp ./* /codebuild/terraform/
+      - cd /codebuild/terraform/
       - terraform init
       - terraform apply -auto-approve
