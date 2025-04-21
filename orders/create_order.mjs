@@ -39,7 +39,7 @@ export const handler = async (event) => {
     quantity: parseInt(i.M.quantity.N),
     productImage: i.M.product_image.S,
     productName: i.M.product_name.S,
-    productPrice: parseFloat(i.M.product_price.N),
+    productPrice: parseFloat(i.M.price.N),
   }));
 
   const totalPrice = items.reduce((acc, item) => {

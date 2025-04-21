@@ -1,14 +1,27 @@
-#terraform import module.products.aws_lambda_function.get_categories vka-product-categories
-#terraform import module.products.aws_lambda_function.search_products vka-product-search
-#terraform import module.products.aws_lambda_function.product_details vka-product-details
-#terraform import module.carts.aws_lambda_function.add_item vka-cart-add-item
-#terraform import module.carts.aws_lambda_function.remove_item vka-cart-remove-item
-#terraform import module.carts.aws_lambda_function.get_items vka-cart-get-items
-#terraform import module.carts.aws_lambda_function.change_quantity vka-cart-change-quantity
-terraform import module.orders.aws_lambda_function.create_order vka-order-create
+terraform state mv aws_lambda_function.deploy[\"vka-product-categories\"] aws_lambda_function.deploy[\"get-categories\"]
+terraform state mv aws_lambda_function.deploy[\"vka-product-details\"] aws_lambda_function.deploy[\"get-product-details\"]
+terraform state mv aws_lambda_function.deploy[\"vka-product-search\"] aws_lambda_function.deploy[\"search-products\"]
+terraform state mv aws_lambda_function.deploy[\"vka-cart-add-item\"] aws_lambda_function.deploy[\"add-cart-item\"]
+terraform state mv aws_lambda_function.deploy[\"vka-cart-remove-item\"] aws_lambda_function.deploy[\"remove-cart-item\"]
+terraform state mv aws_lambda_function.deploy[\"vka-cart-get-items\"] aws_lambda_function.deploy[\"get-cart-items\"]
+terraform state mv aws_lambda_function.deploy[\"vka-cart-change-quantity\"] aws_lambda_function.deploy[\"update-cart-quantity\"]
+terraform state mv aws_lambda_function.deploy[\"vka-order-create\"] aws_lambda_function.deploy[\"create-order\"]
 
-terraform state mv module.products.aws_lambda_function.get_categories aws_lambda_function.deploy[0]
-terraform state mv module.products.aws_lambda_function.search_products aws_lambda_function.deploy[1]
-terraform state mv module.products.aws_lambda_function.product_details aws_lambda_function.deploy[2]
 
-terraform state mv module.orders.aws_lambda_function.create_order aws_lambda_function.deploy[\"vka-order-create\"] 
+
+terraform import aws_dynamodb_table.product_table ProductTable
+terraform import aws_dynamodb_table.user_table UserTable
+terraform import aws_s3_bucket.frontend vka-frontend
+terraform import aws_s3_bucket.images vka-images 
+terraform import aws_cloudfront_distribution.frontned_cache E1NW830YWQJV18
+terraform import aws_s3_bucket_website_configuration.static vka-frontend
+terraform import aws_api_gateway_rest_api.api_gateway yddwsntpec
+
+
+# resources
+terraform import aws_api_gateway_resource.root yddwsntpec/bkqbo1f4if
+terraform import aws_api_gateway_resource.nest yddwsntpec/soorcs
+
+terraform import aws_cognito_user_pool.RESOUCE_NAME USER_POOL_NAME
+
+terraform import aws_api_gateway_authorizer.cognito /v3lrcd
