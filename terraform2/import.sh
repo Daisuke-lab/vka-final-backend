@@ -1,0 +1,9 @@
+#terraform import module.products.aws_lambda_function.get_categories vka-product-categories
+#terraform import module.products.aws_lambda_function.search_products vka-product-search
+#terraform import module.products.aws_lambda_function.product_details vka-product-details
+#terraform import module.carts.aws_lambda_function.add_item vka-cart-add-item
+#terraform import module.carts.aws_lambda_function.remove_item vka-cart-remove-item
+#terraform import module.carts.aws_lambda_function.get_items vka-cart-get-items
+#terraform import module.carts.aws_lambda_function.change_quantity vka-cart-change-quantity
+
+terraform import aws_cognito_user_pool.vka_cognito us-east-2_St4RaZHo3
