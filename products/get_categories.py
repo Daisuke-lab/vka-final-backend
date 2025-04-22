@@ -1,7 +1,6 @@
 import json
 import boto3
 from boto3.dynamodb.conditions import Key
-import simplejson as json
 
 dynamodb = boto3.resource('dynamodb')
 TABLE_NAME = "ProductTable"
@@ -15,7 +14,12 @@ def handler(event, context):
         # TODO implement
         return {
             'statusCode': 200,
-            'body': list(set([category['category'] for category in categories]))
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+                "Access-Control-Allow-Methods": "GET,POST,OPTIONS"
+            },
+            'body': json.dumps(list(set([category['category'] for category in categories])))
         }
     except Exception as e:
         print(e)

@@ -6,13 +6,7 @@ resource "aws_s3_bucket" "images" {
   bucket = "vka-images"
 }
 
-resource "aws_s3_bucket_website_configuration" "static" {
-  bucket = aws_s3_bucket.frontend.id
 
-  index_document {
-    suffix = "index.html"
-  }
-  error_document {
-    key = "index.html"
-  }
+resource "aws_s3_bucket" "artifact_store" {
+  bucket = "codepipeline-us-east-2-12d7eee7160c-4590-8d45-1f7cb9daf857"
 }

@@ -47,20 +47,25 @@ variable "lambdas" {
       file_path     = "orders/create_order.mjs"
       runtime       = "nodejs22.x"
     }
+    subscribe-mail = {
+      function_name = "vka-mail-subscribe"
+      file_path     = "utils/subscribe_mail.py"
+      runtime       = "python3.10"
+    }
   }
 }
 
 variable "api_resources" {
   type = map(list(map(string)))
   default = {
-    "/products": [{http_method: "GET", lambda_key = "search-products"}],
-    "/products/categories": [{http_method: "GET", lambda_key = "get-categories"}],
-    "/products/{category}/{id}": [{http_method: "GET", lambda_key = "get-product-details"}],
-    "/orders": [{http_method: "POST", lambda_key = "create-order"}],
-    "/carts": [
-                {http_method: "GET", lambda_key = "get-cart-items"},
-                {http_method: "PUT", lambda_key = "update-cart-quantity"},
-                {http_method: "POST", lambda_key = "add-cart-item"},
-                {http_method: "DELETE", lambda_key = "remove-cart-item"}]
+    "/products" : [{ http_method : "GET", lambda_key = "search-products", auth_required : false }],
+    "/products/categories" : [{ http_method : "GET", lambda_key = "get-categories", auth_required : false }],
+    "/products/{category}/{id}" : [{ http_method : "GET", lambda_key = "get-product-details", auth_required : false }],
+    "/orders" : [{ http_method : "POST", lambda_key = "create-order", auth_required : true }],
+    "/carts" : [
+      { http_method : "GET", lambda_key = "get-cart-items", auth_required : true },
+      { http_method : "PUT", lambda_key = "update-cart-quantity", auth_required : true },
+      { http_method : "POST", lambda_key = "add-cart-item", auth_required : true },
+    { http_method : "DELETE", lambda_key = "remove-cart-item", auth_required : true }]
   }
 }
