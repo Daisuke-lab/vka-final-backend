@@ -11,9 +11,10 @@ export const handler = async (event) => {
         if (!claims || !claims.email) {
             return {
                 statusCode: 401,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                "headers": {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "Content-Type,Authorization",
+                    "Access-Control-Allow-Methods": "GET,POST,OPTIONS"
                 },
                 body: JSON.stringify({ error: 'Unauthorized: Missing or invalid Cognito authentication' })
             };
@@ -40,7 +41,9 @@ export const handler = async (event) => {
                 statusCode: 200,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
                 },
                 body: JSON.stringify({ 
                     message: 'Cart is empty or does not exist',
@@ -51,9 +54,10 @@ export const handler = async (event) => {
 
         return {
             statusCode: 200,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+                "Access-Control-Allow-Methods": "GET,POST,OPTIONS"
             },
             body: JSON.stringify({ 
                 message: 'Cart retrieved successfully',
@@ -65,9 +69,10 @@ export const handler = async (event) => {
         console.error('Error retrieving cart:', error);
         return {
             statusCode: 500,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+                "Access-Control-Allow-Methods": "GET,POST,OPTIONS"
             },
             body: JSON.stringify({ error: 'Failed to retrieve cart' })
         };

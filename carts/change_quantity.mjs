@@ -13,7 +13,9 @@ export const handler = async (event) => {
                 statusCode: 401,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
                 },
                 body: JSON.stringify({ error: 'Unauthorized: Missing or invalid Cognito authentication' })
             };
@@ -32,7 +34,9 @@ export const handler = async (event) => {
                 statusCode: 400,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
                 },
                 body: JSON.stringify({ error: 'Missing or invalid fields: product_id, new_quantity (must be non-negative)' })
             };
@@ -58,7 +62,9 @@ export const handler = async (event) => {
                 statusCode: 404,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
                 },
                 body: JSON.stringify({ error: 'Cart is empty or does not exist' })
             };
@@ -71,7 +77,9 @@ export const handler = async (event) => {
                 statusCode: 404,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
                 },
                 body: JSON.stringify({ error: 'Item not found in cart' })
             };
@@ -105,7 +113,9 @@ export const handler = async (event) => {
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
             },
             body: JSON.stringify({ 
                 message: quantity === 0 ? 'Item removed from cart successfully' : 'Item quantity updated successfully',
@@ -119,7 +129,9 @@ export const handler = async (event) => {
             statusCode: 500,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
             },
             body: JSON.stringify({ error: 'Failed to update item quantity' })
         };
