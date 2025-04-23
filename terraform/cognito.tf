@@ -81,7 +81,7 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
   "https://${aws_cloudfront_distribution.frontend_cache.domain_name}"]
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["implicit"]
-  allowed_oauth_scopes                 = ["email", "openid"]
+  allowed_oauth_scopes                 = ["email", "openid", "phone"]
   supported_identity_providers         = ["COGNITO"]
   explicit_auth_flows                  = ["ALLOW_USER_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_CUSTOM_AUTH"]
   token_validity_units {
